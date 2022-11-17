@@ -1,0 +1,32 @@
+#include <iostream>
+#include <time.h>
+
+using namespace std;
+
+void main()
+{
+	setlocale(LC_ALL, "Russian");
+	srand(time(NULL));
+	int* s;
+	int n, m;
+	cin >> n >> m;
+	s = new int[n];
+	for (int i = 0; i < n; i++) s[i] = 0 + rand() % 99;
+	cout << "Набор из N чисел:" << endl;
+	for (int i = 0; i < n; i++) cout << s[i] << ' ';
+	cout << endl;
+	cout << "Матрица:" << endl;
+	int* mas = new int[m * n];
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			*(mas + i * n + j) = s[j];
+		}
+	}
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			cout << *(mas + i * n + j) << ' ';
+		}
+		cout << endl;
+	}
+	delete[] mas;
+}
