@@ -1,0 +1,46 @@
+#include <iostream>
+#include <time.h>
+
+using namespace std;
+
+void main()
+{
+	setlocale(LC_ALL, "Russian");
+	srand(time(NULL));
+	int n, m;
+	cin >> n >> m;
+	int* mas = new int[m * n];
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			*(mas + i * n + j) = 1 + rand() % 9;
+		}
+	}
+	cout << "Матрица: " << endl;
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			cout << *(mas + i * n + j) << ' ';
+		}
+		cout << endl;
+	}
+	int* s;
+	s = new int[n];
+	int minn = 1;
+	for (int j = 0; j < n; j++) {
+		for (int i = 0; i < m; i++) {
+		    minn *= *(mas + i * n + j);
+		}
+		s[j] = minn;
+		minn = 1;
+	}
+	int min;
+	min = s[0];
+	int min_num = 0;
+	for (int i = 0; i < n; i++) {
+		if (s[i] < min) {
+			min = s[i];
+			min_num = i;
+		}
+	}
+	cout << min_num + 1 << ' ' << min;
+	delete[] mas;
+}
